@@ -3,12 +3,14 @@
 # ------------------------------------------------------
 
 type Review {
+  _id: String!
   isLiked: Boolean
   location: String!
   username: String!
 }
 
 type Comment {
+  _id: String!
   text: String!
   time: DateTime!
   username: String!
@@ -22,21 +24,20 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  getReview(location: String!): Review!
+  getReview(location: String!): [Review!]!
   getComments(location: String!): [Comment!]!
 }
 
 type Mutation {
   createReview(createReviewInput: CreateReviewInput!): Review!
   createComment(commentText: CreateCommentInput!): Comment!
+  createReaction(id: String!, reaction: UpdateCommentInput!): Comment!
 }
 
 input CreateReviewInput {
-  time: DateTime!
   location: String!
-  likes: Int!
+  isLiked: Boolean!
   username: String!
-  comment: String
 }
 
 input CreateCommentInput {
@@ -44,5 +45,13 @@ input CreateCommentInput {
   text: String!
   location: String!
   time: DateTime!
+  isLiked: Boolean!
+}
+
+input UpdateCommentInput {
+  username: String
+  text: String
+  location: String
+  time: DateTime
   isLiked: Boolean!
 }

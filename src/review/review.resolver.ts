@@ -32,7 +32,7 @@ export class ReviewResolver {
   // removeReview(@Args('id', { type: () => Int }) id: number) {
   //   return this.reviewService.remove(id);
   // }
-  @Query((returns) => Review)
+  @Query((returns) => [Review])
   async getReview(@Args('location') location: string) {
     return await this.reviewService.getReview(location);
   }
@@ -40,6 +40,7 @@ export class ReviewResolver {
   async createReview(
     @Args('createReviewInput') createReviewInput: CreateReviewInput,
   ) {
+    console.log(createReviewInput);
     return await this.reviewService.createReview(createReviewInput);
   }
 }

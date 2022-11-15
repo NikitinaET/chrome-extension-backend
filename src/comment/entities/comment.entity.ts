@@ -2,12 +2,16 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { GraphQLObjectType } from 'graphql';
 import { Review } from 'src/review/entities/review.entity';
+import { Types } from 'mongoose';
 
 export type CommentDocument = Comment & Document;
 
 @Schema()
 @ObjectType()
 export class Comment {
+  @Field(() => String)
+  _id: Types.ObjectId;
+
   @Prop()
   @Field()
   text: string;

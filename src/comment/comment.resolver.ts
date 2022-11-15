@@ -52,8 +52,8 @@ export class CommentResolver {
 
   @Mutation(() => Comment)
   createReaction(
-    @Args('reaction') _id: string,
-    updateComentDto: UpdateCommentInput,
+    @Args('id') _id: string,
+    @Args('reaction') updateComentDto: UpdateCommentInput,
   ) {
     return this.commentService.createReaction(_id, updateComentDto);
   }

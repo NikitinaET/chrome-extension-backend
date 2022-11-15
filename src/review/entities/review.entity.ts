@@ -5,12 +5,16 @@ import {
   Comment,
 } from '../../comment/entities/comment.entity';
 import * as mongoose from 'mongoose';
+import { Types } from 'mongoose';
 
 export type ReviewDocument = Review & Document;
 
 @Schema()
 @ObjectType()
 export class Review {
+  @Field(() => String)
+  _id: Types.ObjectId;
+
   @Prop()
   @Field({ nullable: true })
   isLiked?: boolean;
